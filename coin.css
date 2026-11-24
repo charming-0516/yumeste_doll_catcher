@@ -1,0 +1,158 @@
+#coin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .72);
+  
+  transition: opacity .5s ease;
+}
+
+#coin-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: min(310px, 85vw);
+  padding: 28px 20px 24px;
+  border: 6px solid #e5bb58;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff9e8, #ffe8b8);
+  box-shadow:
+    0 0 0 7px #b72832,
+    0 0 0 10px #e5bb58,
+    0 15px 45px #0008;
+  text-align: center;
+  overflow: hidden;
+}
+
+.coin-title {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #a9232d;
+  margin-bottom: 22px;
+}
+
+#coin-slot {
+  position: relative;
+  z-index: 2;
+  width: 146px;
+  height: 78px;
+  margin: auto;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 2px solid #ad792c;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg, #fff1a5, #bf872c, #ffe18a
+  );
+  box-shadow: 0 4px 0 #986321;
+}
+
+.coin-slot-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: linear-gradient(#777, #aaa, #555);
+}
+
+.coin-slot-hole {
+  width: 94px;
+  height: 13px;
+  border-radius: 5px;
+  background: #171313;
+  box-shadow: inset 0 3px 5px #000;
+}
+
+.coin-arrow {
+  height: 38px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #b58432;
+  animation: coinArrow .8s ease-in-out infinite alternate;
+}
+
+#insert-coin {
+  display: block;
+  position: relative;
+  z-index: 3;
+  width: 86px;
+  height: 86px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  animation: coinFloat 1.4s ease-in-out infinite;
+}
+
+#insert-coin img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px #9a641955);
+}
+
+.coin-guide {
+  margin-top: 18px;
+  color: #a9232d;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+#coin-panel.inserting #insert-coin {
+  animation: coinInsert .85s ease-in-out forwards;
+  pointer-events: none;
+}
+
+#coin-panel.inserting .coin-arrow,
+#coin-panel.inserting .coin-guide {
+  opacity: 0;
+}
+
+#coin-panel.inserted #coin-slot {
+  animation: coinFlash .5s ease-out;
+}
+
+#coin-overlay.finished {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes coinFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes coinArrow {
+  from { transform: translateY(3px); opacity: .5; }
+  to { transform: translateY(-3px); opacity: 1; }
+}
+
+@keyframes coinInsert {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  65% {
+    transform: translateY(-85px) scale(1, .18);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(.65, .04);
+    opacity: 0;
+  }
+}
+
+@keyframes coinFlash {
+  0%, 100% { filter: brightness(1); }
+  40% {
+    filter: brightness(1.8);
+    box-shadow: 0 0 30px #ffd34d;
+  }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ユメステクレーンゲーム</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="coin.css">
+<link rel="stylesheet" href="collection.css">
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+<h1>ユメステクレーンゲーム</h1>
+
+
+<div class="stats" style="display:none;">
+  <span>시도: <b id="attempts">0</b></span>
+  <span>획득: <b id="wins">0</b></span>
+</div>
+
+<div class="machine-wrap">
+  <div id="machine"></div>
+  <img class="machine-frame"
+       src="assets/backgrounds/190002.png"
+       alt=""
+       draggable="false">
+  <div id="get-effect">
+    <span>GET!</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="left">◀</button>
+  <button id="right">▶</button>
+  <button id="drop">キャッチ！</button>
+</div>
+
+<p id="status" hidden></p>
+
+<div class="game-menu">
+  <button id="reset">景品の再配置</button>
+  <button id="collection-open">図鑑</button>
+</div>
+
+<p class="hint">キーボード操作：← → / Space</p>
+
+<script src="matter.min.js"></script>
+<script src="dolls.js"></script>
+<div id="reward-overlay">
+  <div id="reward-card">
+    <img id="reward-nametag" alt="" draggable="false">
+    <img id="reward-name" alt="" draggable="false">
+    <img id="reward-stamp"
+         src="assets/effects/291100.png"
+         alt=""
+         draggable="false">
+  </div>
+</div>
+
+<script src="rewards.js"></script>
+<div id="collection-overlay" hidden>
+  <div id="collection-panel" role="dialog"
+       aria-modal="true" aria-label="図鑑">
+
+    <div class="collection-header">
+      <h2>図鑑</h2>
+      <button id="collection-close"
+              aria-label="閉じる">×</button>
+    </div>
+
+    <div class="collection-progress-label">
+      <span>コンプリート率</span>
+      <b id="collection-progress-text">0 / 21</b>
+    </div>
+
+    <div class="collection-progress-track">
+      <div id="collection-progress-bar"></div>
+    </div>
+
+    <div id="collection-grid"></div>
+    
+  </div>
+</div>
+
+<script src="collection.js"></script>
+<script src="game.js"></script>
+
+<div id="coin-overlay">
+  <div id="coin-panel">
+    <div class="coin-title">コインを入れてね！</div>
+    <div id="coin-slot">
+      <div class="coin-slot-inner">
+        <div class="coin-slot-hole"></div>
+      </div>
+    </div>
+    <div class="coin-arrow">↑</div>
+    <button id="insert-coin" aria-label="コイン投入">
+      <img src="assets/coins/1000010.png"
+           alt="コイン" draggable="false">
+    </button>
+    <div class="coin-guide">コインをクリック</div>
+  </div>
+</div>
+
+<script src="coin.js"></script>
+</body>
+</html>

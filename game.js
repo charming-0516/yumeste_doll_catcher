@@ -150,7 +150,6 @@ for (const data of Object.values(REWARD_DATA)) {
 
 const rewardQueue = [];
 let rewardShowing = false;
-let rewardAudio = null;
 let rewardVoiceTimer = null;
 
 function showGetEffect(doll) {
@@ -195,18 +194,11 @@ function showNextReward() {
 
   clearTimeout(rewardVoiceTimer);
 
-  if (rewardAudio) {
-    rewardAudio.pause();
-  }
+  GameVoice.stop();
 
   if (data.voice) {
-    rewardAudio = new Audio(data.voice);
-    rewardAudio.volume = 0.8;
-
     rewardVoiceTimer = setTimeout(() => {
-      rewardAudio.play().catch(error => {
-        console.warn('음성 재생 실패:', error);
-      });
+      GameVoice.play(data.voice);
     }, 700);
   }
 }
@@ -216,10 +208,7 @@ function closeReward() {
 
   clearTimeout(rewardVoiceTimer);
 
-  if (rewardAudio) {
-    rewardAudio.pause();
-    rewardAudio.currentTime = 0;
-  }
+  GameVoice.stop();
 
   document.getElementById('reward-overlay')
     .classList.remove('active');
